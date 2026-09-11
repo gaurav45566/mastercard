@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Acme Widgets — Demo Store</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    margin: 0;
+    background: #f5f6f8;
+    color: #16181d;
+  }
+  nav {
+    padding: 16px 32px;
+    font-weight: 700;
+    background: #fff;
+    border-bottom: 1px solid #eceef1;
+  }
+  main {
+    max-width: 920px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 720px) {
+    main { grid-template-columns: 1fr; }
+  }
+  .product-panel {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .product-panel img { width: 100%; border-radius: 12px; background: #e9ebf0; height: 200px; object-fit: cover; }
+  h1 { font-size: 20px; margin: 18px 0 6px; }
+  .price { font-size: 26px; font-weight: 700; margin-bottom: 14px; }
+  .desc { color: #6b7280; font-size: 14px; line-height: 1.5; margin-bottom: 20px; }
+  .buy-btn {
+    background: #16181d;
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+  }
+  .buy-btn:hover { background: #2b2e37; }
+  .buy-btn:disabled { opacity: 0.6; cursor: default; }
+
+  .log-panel {
+    background: #0f1117;
+    color: #d7dbe3;
+    border-radius: 16px;
+    padding: 20px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12.5px;
+    height: fit-content;
+    max-height: 420px;
+    overflow-y: auto;
+  }
+  .log-panel h3 { color: #fff; margin: 0 0 12px; font-family: inherit; font-size: 13px; }
+  .log-entry { padding: 6px 0; border-bottom: 1px solid #22242c; }
+  .log-entry .tag { color: #7dd3fc; }
+  .log-entry .tag.success { color: #4ade80; }
+  .log-entry .tag.error { color: #f87171; }
+  .log-entry .tag.close { color: #fbbf24; }
+  .log-time { color: #6b7280; margin-right: 8px; }
+  .hint { font-size: 12px; color: #9aa0ab; margin-top: 16px; line-height: 1.6; }
+  code { background: #eceef1; padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+  <nav>Acme Widgets</nav>
+  <main>
+    <div class="product-panel">
+      <img src="https://placehold.co/600x300?text=Pro+Plan" alt="Pro Plan" />
+      <h1>Acme Pro Plan</h1>
+      <div class="price">$29.00 / month</div>
+      <div class="desc">
+        Everything in Free, plus priority support, unlimited projects,
+        and team collaboration. Cancel anytime.
+      </div>
+      <button id="buyBtn" class="buy-btn">Buy now</button>
+      <div class="hint">
+        Test cards — <code>4242 4242 4242 4242</code> succeeds,
+        <code>4000 0000 0000 0002</code> declines,
+        <code>4000 0000 0000 0341</code> fails once then succeeds.
+      </div>
+    </div>
+
+    <div class="log-panel">
+      <h3>Callback log</h3>
+      <div id="log"></div>
+    </div>
+  </main>
+
+  <script>
+    if (window.location.hostname === "localhost") {
+      window.__DODO_CHECKOUT_ORIGIN__ = "http://localhost:5174";
+      window.__DODO_CHECKOUT_PATH__ = "/index.html";
+    } else {
+      window.__DODO_CHECKOUT_ORIGIN__ = window.location.origin;
+      window.__DODO_CHECKOUT_PATH__ = "/checkout-app/index.html";
+    }
+  </script>
+  <script src="/sdk/dist/dodo-checkout.js"></script>
+  <script src="/demo-site/demo.js"></script>
+</body>
+</html>
